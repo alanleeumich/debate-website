@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    overflow: auto;
+    height: 100%;
+}
 
 .App{
   text-align: center;
@@ -106,14 +115,19 @@
   grid-template-columns: repeat(3, 1fr);
   max-height: 100%;
 }
+
+.middle{
+  min-width: 400px;
+}
+
 .sideCover{
   background-color: rgb(67, 67, 131);
   opacity: 0.5;
 }
 .messageField{
   height:70%;
-  width:55%;
-  min-width: 600px;
+  width: 33%;
+  min-width: 400px;
   overflow: scroll;
   position: fixed;
 
@@ -133,8 +147,17 @@
 }
 
 .typeField{
-  background-color: rgb(67, 67, 131);
-  
+  background-color: whitesmoke;
   bottom: 0;
+  position: absolute;
+  width: 33.33%;
+  min-width: 400px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+}
+.typeField input{
+  width: 33.33%;
+  min-width: 390px;
 }
 
