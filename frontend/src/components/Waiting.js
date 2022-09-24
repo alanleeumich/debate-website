@@ -19,11 +19,13 @@ function Waiting() {
 
     return(
     <div className="App">
+        <div className="waitingBack">
+        </div>
         <div className="waitingPanel">
             <h1>Waiting{periods}</h1>
 
         </div>
-
+        
     </div>
     )
 }
