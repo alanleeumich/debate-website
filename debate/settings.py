@@ -154,7 +154,7 @@ CHANNEL_LAYERS = {
         'CONFIG': {
             "hosts": [("redis://debate-chat.dti3hf.ng.0001.usw2.cache.amazonaws.com:6379", 6379)],
         },
-        'ROUTING': 'ws.routing.application',
+
         
     },
 }
