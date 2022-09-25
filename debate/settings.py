@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     'channels',
+    
 ]
 
 MIDDLEWARE = [
@@ -149,7 +150,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        'CONFIG': {
+            "hosts": [("redis://debate-chat.dti3hf.ng.0001.usw2.cache.amazonaws.com:6379", 6379)],
+        },
+        'ROUTING': 'ws.routing.application',
         
     },
 }
