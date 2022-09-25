@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 const Home = () =>{
 
     const navigate = useNavigate();
-
+    const api = "http://django-env-0.eba-5gyu8vpi.us-west-2.elasticbeanstalk.com"
 
     let joinRoomAff = async() =>{
-        let response = await fetch('http://127.0.0.1:8000/api/join',{
+        let response = await fetch(api + '/api/join',{
           method: "PUT",
           headers: {
             'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ const Home = () =>{
         navigate("rooms/" + data + "/aff") 
     }
     let joinRoomNeg = async() =>{
-        let response = await fetch('http://127.0.0.1:8000/api/join',{
+        let response = await fetch(api + '/api/join',{
             method: "PUT",
             headers: {
             'Content-Type': 'application/json'

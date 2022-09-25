@@ -13,7 +13,7 @@ function Message(props){
 
 const Room = () =>{
 
-
+    const api = "http://django-env-0.eba-5gyu8vpi.us-west-2.elasticbeanstalk.com"
     const { roomName } = useParams()
     const { side } = useParams()
     const [roomFull, setRoomFull] = useState(false)
@@ -35,7 +35,7 @@ const Room = () =>{
     useEffect(() => {
         chatSocket.current = new WebSocket(
             'ws://'
-            + "127.0.0.1:8000"
+            + api
             + '/ws/chat/'
             + roomName
             + '/'
