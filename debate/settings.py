@@ -34,8 +34,7 @@ STATIC_ROOT = 'static'
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'django-env-0.eba-5gyu8vpi.us-west-2.elasticbeanstalk.com',
-    '35.80.155.99']
+    'https://squabblegoblin.herokuapp.com/']
 
 
 # Application definition
@@ -153,7 +152,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.pubsub.RedisPubSubChannelLayer",
         'CONFIG': {
-            "hosts": [("debate-chat.dti3hf.ng.0001.usw2.cache.amazonaws.com:6379", 6379)],
+            "hosts": [("127.0.0.1", 6379)],
         },
         
         

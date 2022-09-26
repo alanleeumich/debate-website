@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () =>{
 
     const navigate = useNavigate();
-    const api = "http://django-env-0.eba-5gyu8vpi.us-west-2.elasticbeanstalk.com"
+    const api = "127.0.0.1"
 
     let joinRoomAff = async() =>{
         let response = await fetch(api + '/api/join',{
