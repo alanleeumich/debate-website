@@ -34,7 +34,8 @@ STATIC_ROOT = 'static'
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'django-env-0.eba-5gyu8vpi.us-west-2.elasticbeanstalk.com']
+    'django-env-0.eba-5gyu8vpi.us-west-2.elasticbeanstalk.com',
+    '35.80.155.99']
 
 
 # Application definition
