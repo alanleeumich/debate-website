@@ -34,7 +34,7 @@ STATIC_ROOT = 'static'
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    '.herokuapp.com/']
+    '.herokuapp.com']
 
 
 # Application definition
