@@ -151,7 +151,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG":{
+            "hosts" :[os.environ.get('REDIS_URL','redis://localhost:6379')]
+        }
         
         
         
