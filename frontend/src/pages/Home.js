@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () =>{
 
     const navigate = useNavigate();
-    const api = "127.0.0.1"
+    const api = "http://127.0.0.1:8000"
 
     let joinRoomAff = async() =>{
         let response = await fetch(api + '/api/join',{

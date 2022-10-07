@@ -1,6 +1,8 @@
+from unittest.util import _MAX_LENGTH
 from django.db import models
 import random
 import string
+from django.contrib.auth.models import User
 # Create your models here.
 
 def generate_unique_code():
@@ -10,6 +12,26 @@ def generate_unique_code():
         if Room.objects.filter(code = code).count() == 0:
             break
     return code
+
+
+
+
+
+
+class Community(models.Model):
+    name = models.TextField(null = True, blank = True)
+    admins = models.ManyToManyField(User,related_name = "communities")
+
+    
+
+class Prompt(models.Model):
+    community = models.ForeignKey(Community, related_name='prompts', on_delete=models.CASCADE)
+    body = models.CharField(max_length=255, default = "")
+
+
+
+
+
 
 class Room(models.Model):
     code = models.CharField(max_length=8,default = "", unique=True)

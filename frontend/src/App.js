@@ -4,7 +4,9 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Room from "./pages/Room";
-
+import CreateUser from "./pages/CreateUser"
+import Login from "./pages/Login"
+import User from "./pages/User"
 
 
 
@@ -13,8 +15,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path = "/rooms/:roomName/:side" element = {<Room />}/>
+        <Route path = "/create-user" element = {<CreateUser/>}/>
+        <Route path = "/login" element = {<Login/>}/>
+        <Route path = "/user/:username" element = {<User/>}/>
         <Route exact path="/" element={<Home />}/>
-       
+         
       </Routes>
     </BrowserRouter>
   )

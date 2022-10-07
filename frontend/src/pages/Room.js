@@ -13,7 +13,7 @@ function Message(props){
 
 const Room = () =>{
 
-    const api = "127.0.0.1"
+    const api = "127.0.0.1:8000"
     const { roomName } = useParams()
     const { side } = useParams()
     const [roomFull, setRoomFull] = useState(false)
