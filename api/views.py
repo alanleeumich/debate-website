@@ -7,10 +7,9 @@ from django.contrib.auth import authenticate,login
 from rest_framework import views
 from .models import Message, Room, Community, Prompt, generate_unique_code
 from .serializers import *
-from .background import cyclePrompts
+
 
 import json
-cyclePrompts(repeat = 10,repeat_until = None)
 
 # Create your views here.
 @api_view(['GET'])
