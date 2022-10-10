@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const Home = () =>{
+const CommunityHome = () =>{
 
     const navigate = useNavigate();
     const api = "http://127.0.0.1:8000"
@@ -52,4 +52,4 @@ const Home = () =>{
     );
 }
 
-export default Home;
+export default CommunityHome;

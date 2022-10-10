@@ -10,7 +10,7 @@ class MessageSerializer(ModelSerializer):
 class RoomSerializer(ModelSerializer):
     class Meta:
         model = Room
-        fields = ['id','aff_open','neg_open','code']
+        fields = ['id','aff_open','neg_open','code',"communityName"]
 
 class UserSerializer(ModelSerializer):
     class Meta:
