@@ -15,6 +15,8 @@ urlpatterns = [
     path('create-user',views.createUser,name = "create-user"),
     path('login',views.LoginView.as_view(),name = "login"),
     path('get-user',views.getUser,name = "getUser"),
-    path('make-community',views.makeCommunity, name = "makeCommunity")
+    path('make-community',views.makeCommunity, name = "makeCommunity"),
+    path('add-prompt',views.addPrompt,name = "addPrompt"),
+    path('delete-prompt',views.deletePrompt, name = "deletePrompt")
 
 ]

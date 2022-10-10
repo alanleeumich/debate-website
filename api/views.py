@@ -7,7 +7,10 @@ from django.contrib.auth import authenticate,login
 from rest_framework import views
 from .models import Message, Room, Community, Prompt, generate_unique_code
 from .serializers import *
+from .background import cyclePrompts
+
 import json
+cyclePrompts(repeat = 10,repeat_until = None)
 
 # Create your views here.
 @api_view(['GET'])
@@ -62,7 +65,7 @@ class LoginView(views.APIView):
         login(request,user)
         return Response("successful login")
 
-
+#make-community
 @api_view(['GET','POST'])
 def makeCommunity(request):
     username = request.data["auth"]["username"]
@@ -76,7 +79,7 @@ def makeCommunity(request):
     if Community.objects.filter(name = community_name).count() != 0:
         return Response("error, community name already taken")
 
-    community = Community(name = community_name)
+    community = Community(name = community_name,currentPrompt = request.data["community"]["prompts"][0])
     community.save()
     community.admins.add(user)
     for prompt_body in request.data["community"]["prompts"]:
@@ -84,7 +87,8 @@ def makeCommunity(request):
         prompt.save()
     return Response("created community successfully")
 
-@api_view(['GET,POST'])
+#add-prompt
+@api_view(['GET','POST'])
 def addPrompt(request):
     username = request.data["auth"]["username"]
     password = request.data["auth"]["password"]
@@ -103,6 +107,7 @@ def addPrompt(request):
     prompt.save()
     return Response("prompt successfully added")
 
+#delete-prompt
 @api_view(['GET','POST'])
 def deletePrompt(request):
     username = request.data["auth"]["username"]
@@ -119,7 +124,7 @@ def deletePrompt(request):
     prompt.delete()
     return Response("prompt deleted sucessfully")
 
-
+#get-user
 @api_view(['GET','POST'])
 def getUser(request):
     
@@ -134,22 +139,31 @@ def getUser(request):
     for community in communities:
         retval[community.name] = []
         for prompt in community.prompts.all():
-            retval[community.name].append(prompt.body)
+            retval[community.name].append({"content" : prompt.body, "id" : prompt.id})
     return Response(json.dumps(retval))
 
 
-
+@api_view(['GET','POST'])
+def getPrompt(request):
+    communityName = request.data["community"]
+    if Community.objects.filter(name = communityName).count() == 0:
+        return Response("community name invalid")
+    return Response(Community.objects.filter(name = communityName)[0].currentPrompt)
 
 
 
 @api_view(['GET','PUT'])
 def getRoom(request):
     side = request.data["side"]
+    communityName = request.data["community"]
+    if Community.objects.filter(name = communityName).count() == 0:
+        return Response("community name invalid")
+    
     if side == "aff":
-        open_rooms = Room.objects.filter(aff_open = True)
+        open_rooms = Room.objects.filter(communityName = communityName).filter(aff_open = True)
         if open_rooms.count() == 0:
             code = generate_unique_code()
-            room = Room(code = code, aff_open = False, neg_open = True)
+            room = Room(code = code, aff_open = False, neg_open = True,communityName = communityName)
             room.save()
             return Response(code)
         else:
@@ -158,10 +172,10 @@ def getRoom(request):
             room.save()
             return Response(room.code)
     else:
-        open_rooms = Room.objects.filter(neg_open = True)
+        open_rooms = Room.objects.filter(communityName = communityName).filter(neg_open = True)
         if open_rooms.count() == 0:
             code = generate_unique_code()
-            room = Room(code = code, aff_open = True, neg_open = False)
+            room = Room(code = code, aff_open = True, neg_open = False,communityName = communityName)
             room.save()
             return Response(code)
         else:

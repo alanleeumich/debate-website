@@ -20,7 +20,7 @@ class UserSerializer(ModelSerializer):
 class CommunitySerializer(ModelSerializer):
     class Meta:
         model = Community
-        fields = ['id','name','admins','prompts']
+        fields = ['id','name','admins','prompts','currentPrompt']
 
 class PromptSerializer(ModelSerializer):
     class Meta:

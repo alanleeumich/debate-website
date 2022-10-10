@@ -21,7 +21,7 @@ def generate_unique_code():
 class Community(models.Model):
     name = models.TextField(null = True, blank = True)
     admins = models.ManyToManyField(User,related_name = "communities")
-
+    currentPrompt = models.CharField(max_length=255, default = "")
     
 
 class Prompt(models.Model):
@@ -37,7 +37,7 @@ class Room(models.Model):
     code = models.CharField(max_length=8,default = "", unique=True)
     aff_open = models.BooleanField(default=True)
     neg_open = models.BooleanField(default=True)
-
+    communityName = models.TextField(null = True, blank = True)
     def __str__(self):
         return self.id
 
