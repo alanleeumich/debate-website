@@ -11,7 +11,7 @@ urlpatterns = [
     
     path('join',views.getRoom,name = "test"),
     
-    
+    path('get-prompt',views.getPrompt,name = "getPrompt"),
     path('create-user',views.createUser,name = "create-user"),
     path('login',views.LoginView.as_view(),name = "login"),
     path('get-user',views.getUser,name = "getUser"),
