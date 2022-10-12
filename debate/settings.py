@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 
 from pickle import TRUE
 
@@ -50,6 +49,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     'channels',
+    'django_crontab'
     
 ]
 
@@ -98,8 +98,9 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-DATABASES['default'] =  dj_database_url.config()
-#SQL_ALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES["default"].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -176,4 +177,8 @@ CHANNEL_LAYERS = {
         
     },
 }
+
+CRONJOBS = [
+    ('*/1 * * * *', 'api.cron.update_prompts')
+]
 
