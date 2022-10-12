@@ -8,7 +8,7 @@ class Command(BaseCommand):
         communities = Community.objects.all()
         for community in communities:
             prompts = community.prompts.all()
-            community.currentPrompt = prompts[random.randint(0,prompts.count())].body
+            community.currentPrompt = prompts[random.randint(0,prompts.count() - 1)].body
             community.save()
         
         return
