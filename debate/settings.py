@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     'channels',
-    'django_crontab'
+
     
 ]
 
@@ -178,7 +178,5 @@ CHANNEL_LAYERS = {
     },
 }
 
-CRONJOBS = [
-    ('*/1 * * * *', 'api.cron.update_prompts')
-]
+
 
